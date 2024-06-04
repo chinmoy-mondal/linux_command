@@ -1,0 +1,33 @@
+csh
+genus
+read_libs /home/tahoe13/genus_work/test/timing_libs/slow.lib
+read_physical -lef /home/tahoe13/genus_work/test/timing_libs/gsclib045.lef
+read_hdl /home/tahoe13/genus_work/test/input_files/fifo_memory_rtl.v
+elaborate fifo_mem
+create_clock -name CLOCK -period 1.99 [get_ports clk]
+set_clock_uncertainty -setup 0.5 [get_clocks CLOCK]
+set_clock_uncertainty -hold 0.2 [get_clocks CLOCK]
+set_max_transition 0.8
+set_clock_transition -min 0.09 -rise -fall [get_clocks CLOCK]
+set_clock_transition -max 0.1 -rise -fall [get_clocks CLOCK]
+set_max_capacitance 0.5 [current_design]
+
+set_max_fanout 15 [current_design]
+set_driving_cell -lib_cell BUFX12 -pin Y [all_inputs]
+set_input_delay -max 0.5 [all_inputs]
+set_input_delay -max 0.2 [get_ports clk]
+set_output_delay -max 0.4 [all_outputs]
+set_load 0.7 [all_outputs]
+set_operating_conditions slow
+init_design
+syn_generic
+syn_map
+syn_opt
+gui_show
+report_power > 3_power.rpt
+report_timing > 3_time.rpt
+report_area > 3_area.rpt
+report_gates > 3_gates.rpt
+report_qor > 3_qor.rpt
+write_deb -to_file 3_project1.enc 
+write_hdl > 3_project1_show.sdc
