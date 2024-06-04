@@ -1,21 +1,21 @@
 Basic
 =====
-pwd	Current directory
-mkdir	Make directory 
-w	Show user
-write tahoe13	To send message to tahow13 user
-cd/	Root directory
-cd~	Home directory
-cd-	Previous working directory
-rm	Remove a single file or empty folder
-rm -rf	Remove directories and their contents recursive forcefully
-rm -rfi	Remove after getting permission
-realpath	Get real path
+pwd					Current directory
+mkdir				Make directory 
+w					Show user
+write tahoe13		To send message to tahow13 user
+cd/					Root directory
+cd~					Home directory
+cd-					Previous working directory
+rm					Remove a single file or empty folder
+rm -rf				Remove directories and their contents recursive forcefully
+rm -rfi				Remove after getting permission
+realpath			Get real path
 cp -rf <s> <d>  .	Copy all file
-mv	Move or rename
-ps 	Current process
-chmod 777 file	Give permission 
-Chown user file	Change user of any file
+mv					Move or rename
+ps 					Current process
+chmod 777 file		Give permission 
+Chown user file		Change user of any file
 ln -s path linkname	Softlink(if main file delete softlink break)
 ln path linkname	Hearlink(if main file delete headlink don’t break) used for backup
 
