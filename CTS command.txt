@@ -1,0 +1,25 @@
+#source setup.tcl
+#restoreDesign Design/place.inn.dat $Block_name
+set_interactive_constraint_modes [all_constraint_modes -active]
+#update_constraint_mode -name func -sdc_files SSDC_name
+#source Default.view
+#setMaxRouteLayer $Max_route
+set_clock_uncertainty -setup 0.500 [all_clocks]
+set_clock_uncertainty -hold 0.300 [all_clocks]
+set_propagated_clock [all_clocks]
+set_max_transition 2.0 [current_design]
+set_max_fanout 10 [current_design]
+cleanupSpecifyClockTree
+delete_ccopt_clock_tree_spec
+create_ccopt_clock_tree_spec -file ccopt.ctstch
+source ccopt.ctstchsetCTSMode -routeBottomPreferredLayer 1 - routeTopPreferredLayer 2
+set_ccopt_property buffer_cells {BUFX*}
+setOptMode -fixFanoutLoad true
+set_max_fanout 10 [current_design]
+set_ccopt_property max_fanout 10
+ccopt_design -cts
+#saveDesign -tcon Design/clock.inn
+#saveDesign -tcon Design/clock_scratch.inn
+#report_constraint -drv_violation_type max_capacitance > reports/clock_max_capacitance.rpt
+#report_constraint -drv_violation_type max_transition > reports/clock_max_transition.rpt
+#report_power
