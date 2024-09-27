@@ -13,7 +13,7 @@ cleanupSpecifyClockTree
 delete_ccopt_clock_tree_spec
 create_ccopt_clock_tree_spec -file ccopt.ctstch
 source ccopt.ctstch
-setCTSMode -routeBottomPreferredLayer 1 - routeTopPreferredLayer 2
+setCTSMode -routeBottomPreferredLayer 1 -routeTopPreferredLayer 2
 set_ccopt_property buffer_cells {BUFX*}
 setOptMode -fixFanoutLoad true
 set_max_fanout 10 [current_design]
